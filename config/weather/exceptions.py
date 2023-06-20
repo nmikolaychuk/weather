@@ -1,0 +1,2 @@
+class GetWeatherError(Exception):
+    pass

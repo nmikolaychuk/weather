@@ -1,0 +1,69 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Какая сейчас погода?
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input type="text" id="input_city_name" name="input_city_name" value="{{ city_weather.city }}">
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-info">
+                                    Выбрать
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ city_weather.temperature }}° C</span>
+                                        <br>
+                                        <span class="text">{{ city_weather.description }}</span>
+                                        <br>
+                                        <span class="text">sunrise: {{ city_weather.sunrise }}</span>
+                                        <br>
+                                        <span class="text">sunset: {{ city_weather.sunset }}</span>
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+{% endblock %}
